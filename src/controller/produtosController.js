@@ -20,15 +20,12 @@ export function getProdutoByIdController(req, res) {
 
 export function getProdutosByCategoriaController(req, res) {
   const { categoria } = req.query;
-  console.log("Categoria recebida:", categoria);
   if (!categoria) {
     res.status(404).json({ mensagem: "Requisição não pode ser processada!" });
     return;
   }
 
   const resultado = produtosModelModule.getProdutosByCategoria(categoria);
-  console.log("Resultado do filtro:", resultado);
-
   if (!resultado || resultado.length === 0) {
     res.status(404).json({ mensagem: "Requisição não pode ser processada!" });
     return;
