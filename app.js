@@ -1,7 +1,9 @@
 import express from "express";
-import * as frutaControllerModule from "./src/controller/frutasController.js";
-import * as alunoControllerModule from "./src/controller/alunosController.js";
-import * as produtoControllerModule from "./src/controller/produtosController.js";
+import { frutasRouter } from "./src/routes/frutasRoutes.js";
+import { alunosRouter } from "./src/routes/alunosRouter.js";
+import { produtosRouter } from "./src/routes/produtosRoutes.js";
+
+
 import * as contatosControllerModule from "./src/controller/contatosController.js";
 import * as pacienteControllerModule from "./src/controller/pacienteController.js";
 import * as medicoControllerModule from "./src/controller/medicoController.js";
@@ -13,22 +15,15 @@ const port = 3000;
 app.use(express.json());
 
 //frutas
-app.get("/frutas", frutaControllerModule.getAllFrutasController);
-app.get("/frutas/:id", frutaControllerModule.getFrutaByIdController);
+app.use('/', frutasRouter);
 //------
 
 //alunos
-app.get("/alunos", alunoControllerModule.getAlunos);
-app.post("/alunos", alunoControllerModule.postAluno);
+app.use('/', alunosRouter)
 //------
 
 //produtos
-app.get(
-  "/produtos/filter",
-  produtoControllerModule.getProdutosByCategoriaController
-);
-app.get("/produtos/:id", produtoControllerModule.getProdutoByIdController);
-app.get("/produtos", produtoControllerModule.getAllProdutosController);
+app.use('/', produtosRouter)
 //------
 
 //contatos
