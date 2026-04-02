@@ -3,9 +3,6 @@ import * as produtoControllerModule from "../controller/produtosController.js";
 
 export const produtosRouter = Router();
 
-produtosRouter.get(
-  "/produtos/filter",
-  produtoControllerModule.getProdutosByCategoriaController
-);
-produtosRouter.get("/produtos/:id", produtoControllerModule.getProdutoByIdController);
-produtosRouter.get("/produtos", produtoControllerModule.getAllProdutosController);
+produtosRouter.get("/filter", produtoControllerModule.getProdutosByCategoriaController);
+produtosRouter.get("/:id", produtoControllerModule.getProdutoByIdController);
+produtosRouter.get("/", produtoControllerModule.getAllProdutosController);

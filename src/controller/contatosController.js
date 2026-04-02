@@ -1,17 +1,17 @@
 import * as contatosModelModule from '../model/contatosModel.js';
 
-export function getAllContatosController(req, res) {
-    const resultado = contatosModelModule.getAllContatosModel();
+export async function getAllContatosController(req, res) {
+    const resultado = await contatosModelModule.getAllContatosModel();
     res.status(200).json(resultado);
 };
 
-export function getContatoByIdController(req, res) {
+export async function getContatoByIdController(req, res) {
     const id = req.params.id;
     if (!id) {
         res.status(404).json({ mensagem: "Requisição não pode ser processada!" });
     };
 
-    const result = contatosModelModule.getContatoByIdModel(id)
+    const result = await contatosModelModule.getContatoByIdModel(id)
     if (!result) {
         res.status(404).json({ mensagem: "Contato não encontrado!" })
     }

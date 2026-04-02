@@ -61,10 +61,6 @@ export function addNewConsultaModel(dadosNovaConsulta) {
   return dadoParaNovaConsulta;
 }
 
-console.log(
-  addNewConsultaModel({ paciente: "teste", medico: "teste", data: "teste" })
-);
-
 export function deleteConsultaModel(idConsulta) {
   consultas.splice(idConsulta - 1, 1);
   return consultas;

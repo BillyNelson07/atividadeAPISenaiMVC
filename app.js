@@ -2,12 +2,10 @@ import express from "express";
 import { frutasRouter } from "./src/routes/frutasRoutes.js";
 import { alunosRouter } from "./src/routes/alunosRouter.js";
 import { produtosRouter } from "./src/routes/produtosRoutes.js";
-
-
-import * as contatosControllerModule from "./src/controller/contatosController.js";
-import * as pacienteControllerModule from "./src/controller/pacienteController.js";
-import * as medicoControllerModule from "./src/controller/medicoController.js";
-import * as consultaControllerModule from "./src/controller/consultaController.js";
+import { contatosRouter } from "./src/routes/contatosRoutes.js";
+import { pacientesRouter } from "./src/routes/pacientesRouter.js";
+import { medicosRouter } from "./src/routes/medicosRouter.js";
+import { consultasRouter } from "./src/routes/consultasRouter.js";
 
 const app = express();
 const port = 3000;
@@ -15,31 +13,25 @@ const port = 3000;
 app.use(express.json());
 
 //frutas
-app.use('/', frutasRouter);
+app.use('/frutas', frutasRouter);
 //------
 
 //alunos
-app.use('/', alunosRouter)
+app.use('/alunos', alunosRouter)
 //------
 
 //produtos
-app.use('/', produtosRouter)
+app.use('/produtos', produtosRouter)
 //------
 
 //contatos
-app.put("/contatos/:id", contatosControllerModule.editContatoController);
-app.get("/contatos/:id", contatosControllerModule.getContatoByIdController);
-app.get("/contatos", contatosControllerModule.getAllContatosController);
-app.post("/contatos", contatosControllerModule.addNewContatoController);
-app.delete("/contatos/:id", contatosControllerModule.deleteContatoController);
+app.use('/contatos', contatosRouter)
 //------
 
 //api desafio
-app.get("/pacientes", pacienteControllerModule.getAllPacienteController);
-app.post("/pacientes", pacienteControllerModule.newPacienteController);
-app.get("/medicos/filter", medicoControllerModule.getMedicosFilterController);
-app.get("/medicos", medicoControllerModule.getAllMedicosController);
-app.get("/consultas", consultaControllerModule.getAllConsultasController);
+app.use('/pacientes', pacientesRouter)
+app.use('/medicos', medicosRouter)
+app.use('/consultas', consultasRouter)
 //------
 
 app.listen(port, () => {
